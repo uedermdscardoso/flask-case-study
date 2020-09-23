@@ -1,0 +1,58 @@
+{% extends "clientes/base.html" %}
+
+{% block title %}
+    Formulário
+{% endblock title %}
+
+{% block conteudo %}
+    <!--{{ form.genero }}-->
+    <form method="post">
+        {{ form.csrf_token }}
+        <div class="form-group">
+            <label>Nome: </label>
+            {{ form.nome(class='form-control', required=False) }}
+            {% if form.errors.nome %}
+            <div class="alert alert-danger">
+                {{ form.errors.nome }}
+            </div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label>E-mail: </label>
+            {{ form.email(class='form-control', required=False) }}
+            {% if form.errors.email %}
+            <div class="alert alert-danger">
+                {{ form.errors.email }}
+            </div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label>Data de nascimento: </label>
+            {{ form.data_nascimento(class='form-control', required=False) }}
+            {% if form.errors.data_nascimento %}
+            <div class="alert alert-danger">
+                {{ form.errors.data_nascimento }}
+            </div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label>Profissão: </label>
+            {{ form.profissao(class='form-control', required=False) }}
+            {% if form.errors.profissao %}
+            <div class="alert alert-danger">
+                {{ form.errors.profissao }}
+            </div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label>Gênero: </label>
+            {{ form.genero(class='form-control', required=False) }}
+            {% if form.errors.genero %}
+            <div class="alert alert-danger">
+                {{ form.errors.genero }}
+            </div>
+            {% endif %}
+        </div>
+        <button class="btn btn-primary" type="submit">Cadastrar</button>
+    </form>
+{% endblock conteudo %}
