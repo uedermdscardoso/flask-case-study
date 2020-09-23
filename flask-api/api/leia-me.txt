@@ -1,0 +1,21 @@
+
+dependencies:
+1. Flask 1.1.1
+2. SQLAlchemy 1.3.8
+3. mysqlclient 1.4.4
+4. Flask-RESTFul 0.3.7
+5. Flask-SQLAlchemy 2.4.1
+6. Flask-Migrate 2.5.2
+
+7. Flask-Marshmallow 0.10.1      --> for serializers - serializar/deserializar json para python
+8. passlib    --> criptografia
+9. Flask-JWT-Extended 3.24.0   -> para autenticação por token
+10. Flasgger 0.9.3    -> para documentação - Swagger
+
+--Passos
+1. Criar entidade
+2. Criar Model
+3. Criar schema para model
+4. Criar serviço
+5. Criar view / controller
+6. Criar relacionamento
