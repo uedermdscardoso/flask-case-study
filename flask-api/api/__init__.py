@@ -13,12 +13,12 @@ app.config.from_object('config') #config.py
 db = SQLAlchemy(app)
 marshmallow = Marshmallow(app)
 migrate = Migrate(app, db) #Criando uma instância
-JWTManager(app) #Para gerar novos jsons webtokens
+jwt = JWTManager(app) #Para gerar novos jsons webtokens
 
 api = Api(app)
 swagger = Swagger(app)
 
-from .views import tarefa_views, projeto_views, funcionario_views, usuario_views, login_views #Para fucar acessível na aplicação
+from .views import tarefa_views, projeto_views, funcionario_views, usuario_views, login_views, refresh_token_views #Para fucar acessível na aplicação
 from .models import tarefa_model, projeto_model, funcionario_model, usuario_model
 
 #Commands for flask migrate

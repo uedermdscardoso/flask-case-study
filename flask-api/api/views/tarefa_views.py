@@ -1,5 +1,5 @@
 from flask_restful import Resource
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_claims
 from api import api
 from ..schemas import tarefa_schema
 from flask import request, make_response, jsonify
@@ -7,17 +7,25 @@ from ..entidades import tarefa
 from ..services import tarefa_service, projeto_service
 from ..pagination import paginate
 from ..models.tarefa_model import Tarefa
+from ..meus_decorators import admin_required, api_key_required
 
 class TarefaList(Resource): #Métodos que não precisam de parâmetros
 
-    @jwt_required  #Precisda de autenticação
+    #@jwt_required  #Precisda de autenticação
+    @api_key_required
     def get(self):
         #tarefas = tarefa_service.listarTarefas()
         ts = tarefa_schema.TarefaSchema(many=True) #many = True para deserializar mais que um objeto
         #return make_response(ts.jsonify(tarefas), 200)
         return paginate(Tarefa, ts) #aplicando paginação
 
+    #@jwt_required
+    @admin_required
     def post(self):
+        #claims = get_jwt_claims()  # Verificação de perfil de acesso - substituído pelo arquivo meus_decorators
+        #if claims['roles'] != 'admin':
+        #    return make_response(jsonify(mensagem='Não permitido'), 403)
+
         ts = tarefa_schema.TarefaSchema()
         validate = ts.validate(request.json) #Validar os dados recebidos
         if validate:
